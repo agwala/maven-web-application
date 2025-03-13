@@ -18,8 +18,8 @@ node{
         //edit settings.xml with nexus-user login credentials       
     }
     stage('5.Deploy2UAT'){
-        //use deploy-to-container plugin via pipeline syntax
-        //deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://192.168.28.3:8080/')], contextPath: null, war: 'target/*war'
+        sh "echo deployment launched using deploy2container plugin"
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.131.98.255:8089/')], contextPath: null, war: 'target/*war'
         //Deploying [/var/lib/jenkins/workspace/tesla-app-pipeline/target/tesla.war]
     }
     stage('6.6ManualApproval'){
@@ -30,7 +30,7 @@ node{
     }
     stage('7.Deploy2Prod'){
       sh "echo 'Deploy application to the customers/production' " 
-     //deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://192.168.28.3:8080/')], contextPath: null, war: 'target/*war'
+      deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.131.98.255:8089/')], contextPath: null, war: 'target/*war'
          
     }
     stage('8.APM'){
